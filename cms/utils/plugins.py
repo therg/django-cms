@@ -20,7 +20,7 @@ def _extend_blocks(extend_node, blocks):
     Extends the dictionary `blocks` with *new* blocks in the parent node (recursive)
     """
     # we don't support variable extensions
-    if extend_node.parent_name_expr:
+    if hasattr(extend_node, 'parent_name_expr') and extend_node.parent_name_expr:
         return
     parent = extend_node.get_parent(None)
     # Search for new blocks
@@ -54,7 +54,7 @@ def _extend_nodelist(extend_node):
     ExtendsNode
     """
     # we don't support variable extensions
-    if extend_node.parent_name_expr:
+    if hasattr(extend_node, 'parent_name_expr') and extend_node.parent_name_expr:
         return []
     blocks = extend_node.blocks
     _extend_blocks(extend_node, blocks)
